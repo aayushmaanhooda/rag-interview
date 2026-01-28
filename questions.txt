@@ -1,0 +1,86 @@
+PART 1 DOCUMENT LOADING
+"How would you handle PDFs with tables and images?"
+"What metadata would you store and why?"
+"How do you ensure data quality before indexing?"
+
+
+Part 2: CHUNKING STRATEGY
+"Why not just use fixed-size chunking?"
+"How do you handle documents with tables or code?"
+"How would you choose chunk size for your use case?"
+"What's the tradeoff between small vs large chunks?"
+"What is semantic chunking and when would you use it?"
+
+Part 3: EMBEDDINGS
+"How do embeddings work? What do the dimensions represent?"
+"How would you choose an embedding model?"
+"When would you fine-tune embeddings?"
+"What is hybrid search and when would you use it?"
+"Semantic search fails for exact match — how do you solve this?"
+"How do you handle multilingual documents?" (Use Multilingual Embedding Models, Metadata Filtering (Hybrid))
+
+Part 4: VECTOR STORE AND INDEXING 
+Indexing Algorithms (Important for Interviews!)
+
+Brute force = compare query to every vector = O(n) = too slow at scale
+Solution: Approximate Nearest Neighbor (ANN) algorithms
+
+Algorithm                           How It Works                                                                    Tradeoff
+
+Flat (brute force)                  Compare all vectors                                                             100% accurate, slowest
+IVF (Inverted File)                 Cluster vectors, search only relevant clusters                                  Fast, needs training
+HNSW (Hierarchical NSW)             Graph-based, navigate through layers                                            Very fast, more memory
+PQ (Product Quantization)           Compress vectors                                                                Low memory, less accurate
+IVF-PQ                              Combines IVF + PQ                                                               Balanced for large scale
+
+
+"What is HNSW and how does it work?"
+"What's the difference between IVF and HNSW?"
+"How would you choose a vector database?"
+"How do you handle millions of vectors?" (Compress Vectors (Quantization), Sharding / Partitioning)
+"What's the tradeoff between accuracy and speed in ANN search?"
+"How does filtering work with vector search?"
+"What happens when your vectors don't fit in memory?"
+
+"HNSW is a graph-based algorithm for approximate nearest neighbor search. 
+It builds a multi-layer graph where the top layers have fewer nodes with long-range connections for fast navigation, 
+and bottom layers have all nodes with local connections for precision. During search, 
+you start at the top, greedily move toward the query vector, then drop down layers until you 
+find the nearest neighbors. It's fast, has high recall, and is the most popular algorithm in production vector databases."
+
+Part 5: RETRIVAL STRATEGY
+"What is MMR and when would you use it?"
+"How does reranking improve retrieval?"
+"What's the difference between bi-encoder and cross-encoder?"
+"How would you handle vague user queries?"
+"What is HyDE and why does it work?"
+"How do you combine keyword and semantic search?"
+
+Part 6: GENERATIONS & PROMPTING
+"How do you prevent hallucinations in RAG?"
+"What is the 'lost in the middle' problem and how do you solve it?"
+"When would you use map-reduce vs stuff chain?"
+"How do you handle context overflow?"
+"How do you add source citations to RAG answers?"
+"What prompt techniques improve RAG quality?"
+
+
+Part 7: EVALS AND MONITORING
+How do you evaluate RAG quality?"
+"What's the difference between faithfulness and relevance?"
+"How do you create evaluation datasets without manual labeling?"
+"What is LLM-as-Judge evaluation?"
+"How do you monitor RAG in production?"
+"What metrics would you track for a production RAG system?"
+"How do you detect if RAG quality is degrading over time?"
+
+
+Part 8: Advanced Topics & Production Considerations
+"How do you optimize RAG costs in production?"
+"How do you handle caching in RAG?"
+"What security concerns exist in RAG systems?"
+"How do you prevent prompt injection?"
+"How do you scale RAG to handle high traffic?"
+"What are common failure modes in RAG and how do you debug them?"
+"How would you architect a production RAG system?"
+
